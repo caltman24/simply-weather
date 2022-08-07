@@ -1,10 +1,11 @@
 import "./assets/scss/main.scss";
-import { FC } from "react";
+import BrandLogo from "./components/BrandLogo";
 
-const App: FC = () => {
+const App = () => {
   return (
     <div className="App">
-      <h1>Weather App</h1>;
+      <h1>SimplyWeather</h1>
+      <BrandLogo />
     </div>
   );
 };
