@@ -1,0 +1,36 @@
+.temp-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em 0.5em 3em 0.5em;
+}
+
+.temp-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  margin-block: 0.15em;
+
+  h2 {
+    font-size: 4rem;
+  }
+}
+
+.temp-location {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+
+  .city {
+    font-size: 2rem;
+  }
+
+  .country {
+    font-size: 1.1rem;
+    font-weight: 300;
+  }
+}

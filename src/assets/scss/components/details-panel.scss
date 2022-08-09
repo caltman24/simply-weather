@@ -1,0 +1,14 @@
+@use "./search-bar.scss" as searchBar;
+
+.details-panel {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em 0.5em 3em 0.5em;
+  background: rgba(0, 0, 0, 0.46);
+  backdrop-filter: blur(40px);
+  font-weight: 300;
+  padding: 1em 3em;
+  letter-spacing: 0.75px;
+}

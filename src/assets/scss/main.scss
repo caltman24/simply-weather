@@ -1,3 +1,8 @@
+@use "./abstracts/mixins" as mix;
+@use "components/temp-panel.scss" as tempPanel;
+@use "components/clock.scss" as clock;
+@use "components/details-panel.scss" as detailsPanel;
+
 *,
 *::before,
 *::after {
@@ -6,3 +11,34 @@
   padding: 0;
 }
 
+:root {
+  --clr-light: hsla(0, 0%, 100%, 0.55);
+}
+
+.clr-light {
+  color: var(--clr-light);
+}
+
+body {
+  @include mix.darkOverlay;
+  background-image: url("../images/rainy-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  display: grid;
+}
+
+.root,
+.App,
+main {
+  height: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

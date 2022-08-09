@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
+    "@types/react-clock": "^3.0.1",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
     "sass": "^1.54.3",

@@ -2,7 +2,7 @@ interface ILogoProps {
   w: number;
   h: number;
 }
-
+// FIXME: Not being used
 const BrandLogo = ({ w, h }: ILogoProps) => {
   return (
     <svg

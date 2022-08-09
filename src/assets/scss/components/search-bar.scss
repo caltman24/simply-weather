@@ -1,0 +1,31 @@
+.search-bar {
+  display: flex;
+  gap: 1em;
+  width: 100%;
+
+  svg.search-icon {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .search-icon-path {
+      fill: #fff;
+    }
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 0.5em;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: var(--clr-light);
+    font-size: 1rem;
+    letter-spacing: 0.75px;
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.25);
+  }
+}
