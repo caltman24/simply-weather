@@ -1,19 +1,45 @@
+@use "../abstracts/mixins" as mix;
+
 .search-bar {
   display: flex;
   gap: 1em;
   width: 100%;
+  padding: var(--pad-2);
+  padding-bottom: 0;
 
-  svg.search-icon {
+  path#search-icon-path {
+    transition: all 0.2s linear;
+  }
+
+  svg#search-icon {
     width: 35px;
     height: 35px;
     object-fit: contain;
+    transition: transform 0.2s linear;
 
-    &:hover {
-      cursor: pointer;
+    &:active {
+      path#search-icon-path {
+        fill: hsla(0, 0%, 100%, 1) !important;
+        fill-opacity: 1 !important;
+        stroke: none !important;
+        fill-rule: nonzero !important;
+      }
+      transform: scale(1.075);
+      transition: transform 0.3s linear;
     }
 
-    .search-icon-path {
-      fill: #fff;
+    @include mix.hoverMq {
+      &:hover {
+        cursor: pointer;
+        user-select: none;
+
+        path#search-icon-path {
+          fill: hsla(0, 0%, 100%, 1) !important;
+          fill-opacity: 1 !important;
+          stroke: none !important;
+          fill-rule: nonzero !important;
+        }
+      }
     }
   }
 

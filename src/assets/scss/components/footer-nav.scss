@@ -1,0 +1,30 @@
+.footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--pad-2);
+
+  .brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    .brand-logo {
+      width: 35px;
+      height: auto;
+    }
+
+    p {
+      font-size: 1.25rem;
+    }
+
+    .clr-yellow {
+      color: #d9e021;
+      background: var(--clr-yellow);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}

@@ -1,14 +1,101 @@
 @use "./search-bar.scss" as searchBar;
+@use "./footer-nav.scss" as footerNav;
+@use "../abstracts/mixins.scss" as mix;
+
+.tabs-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  margin-block: 1em 0.25em;
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+
+.tab.active {
+  @include mix.activeTab;
+}
+
+.tab {
+  transition: all 300ms linear;
+  color: var(--clr-light);
+
+  &:active {
+    transform: translateY(-2px);
+    transition: all 300ms linear;
+  }
+
+  @include mix.hoverMq {
+    &:hover {
+      cursor: pointer;
+      user-select: none;
+      opacity: 0.7;
+    }
+  }
+}
 
 .details-panel {
-  display: flex; 
+  background: rgba(0, 0, 0, 0.46);
+  backdrop-filter: blur(40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tab-container {
+  font-weight: 300;
+  padding: var(--pad-2);
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.5em 0.5em 3em 0.5em;
-  background: rgba(0, 0, 0, 0.46);
-  backdrop-filter: blur(40px);
-  font-weight: 300;
-  padding: 1em 3em;
   letter-spacing: 0.75px;
+}
+
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.5em;
+  gap: 1.25em;
+
+  & > p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .name {
+    color: var(--clr-light);
+  }
+}
+
+.weather-details {
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.25);
+}
+
+.settings-icon {
+  fill: var(--clr-light);
+  width: 30px;
+  height: 30px;
+  transition: all 0.3s linear;
+  @include mix.hoverMq {
+    &:hover {
+      fill: #fff;
+      cursor: pointer;
+    }
+  }
+  &:active {
+    fill: #fff;
+    transform: scale(1.075);
+    transition: all 0.3s linear;
+  }
 }

@@ -1,17 +1,15 @@
-interface ILogoProps {
-  w: number;
-  h: number;
+interface BrandLogoProps {
+  className: string;
 }
-// FIXME: Not being used
-const BrandLogo = ({ w, h }: ILogoProps) => {
+const BrandLogo = ({ className }: BrandLogoProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={w}
-      height={h}
+      width={50}
+      height={50}
       fill="none"
-      viewBox="0 0 48 60"
-      className="brand-logo"
+      viewBox="0 0 50 50"
+      className={className}
     >
       <path
         fill="url(#a)"
@@ -39,8 +37,8 @@ const BrandLogo = ({ w, h }: ILogoProps) => {
           y2="23.716"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#EAEE83" />
-          <stop offset="1" stop-color="#FDC599" />
+          <stop stopColor="#EAEE83" />
+          <stop offset="1" stopColor="#FDC599" />
         </linearGradient>
         <linearGradient
           id="b"
@@ -50,8 +48,8 @@ const BrandLogo = ({ w, h }: ILogoProps) => {
           y2="40.533"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D9E021" />
-          <stop offset="1" stop-color="#FB872B" />
+          <stop stopColor="#D9E021" />
+          <stop offset="1" stopColor="#FB872B" />
         </linearGradient>
         <linearGradient
           id="c"
@@ -61,8 +59,8 @@ const BrandLogo = ({ w, h }: ILogoProps) => {
           y2="40.533"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D9E021" />
-          <stop offset="1" stop-color="#FB872B" />
+          <stop stopColor="#D9E021" />
+          <stop offset="1" stopColor="#FB872B" />
         </linearGradient>
         <linearGradient
           id="d"
@@ -72,8 +70,8 @@ const BrandLogo = ({ w, h }: ILogoProps) => {
           y2="15.533"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#EAEE83" />
-          <stop offset="1" stop-color="#FDC599" />
+          <stop stopColor="#EAEE83" />
+          <stop offset="1" stopColor="#FDC599" />
         </linearGradient>
         <linearGradient
           id="e"
@@ -83,17 +81,12 @@ const BrandLogo = ({ w, h }: ILogoProps) => {
           y2="9.049"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#EAEE83" />
-          <stop offset="1" stop-color="#FDC599" />
+          <stop stopColor="#EAEE83" />
+          <stop offset="1" stopColor="#FDC599" />
         </linearGradient>
       </defs>
     </svg>
   );
 };
-
-BrandLogo.defaultProps = {
-  w: 50,
-  h: 75,
-} as ILogoProps;
 
 export default BrandLogo;
