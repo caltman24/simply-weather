@@ -1,7 +1,13 @@
 import Clock from "./Utility/Clock";
 import conditionImage from "../assets/images/condition.svg";
+import WeatherDataContext from "../WeatherDataContext";
+import { useContext } from "react";
+import { WeatherDataContextType } from "../@types/weather";
 
 const TempPanel = () => {
+  const { weatherData } = useContext(
+    WeatherDataContext
+  ) as WeatherDataContextType;
   return (
     <div className="temp-panel">
       <Clock />
@@ -10,7 +16,7 @@ const TempPanel = () => {
         <img src={conditionImage} alt="" />
       </span>
       <div className="temp-location">
-        <p className="city">London</p>
+        <p className="city">{weatherData?.location?.name}</p>
         <p className="country">United Kingdom</p>
       </div>
     </div>

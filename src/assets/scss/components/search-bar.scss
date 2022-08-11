@@ -1,4 +1,5 @@
 @use "../abstracts/mixins" as mix;
+@use "../abstracts/animations" as *;
 
 .search-bar {
   display: flex;
@@ -42,7 +43,10 @@
       }
     }
   }
+}
 
+.search-input {
+  width: 100%;
   input[type="text"] {
     width: 100%;
     padding: 0.5em;
@@ -53,5 +57,31 @@
     font-size: 1rem;
     letter-spacing: 0.75px;
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.25);
+  }
+
+  position: relative;
+
+  &-results {
+    min-height: 0;
+    width: 100%;
+    background-color: hsla(0, 0%, 0%, 0.6);
+    backdrop-filter: blur(40px);
+    position: absolute;
+
+    ul {
+      list-style: none;
+      padding: 0.5em;
+    }
+
+    li {
+      cursor: pointer;
+      transition: all 0.2s linear;
+      font-weight: 300;
+      padding: 0.15em;
+
+      &:hover {
+        background-color: hsla(0, 0%, 100%, 0.25);
+      }
+    }
   }
 }

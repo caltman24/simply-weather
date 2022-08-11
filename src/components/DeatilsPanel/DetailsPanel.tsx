@@ -2,6 +2,7 @@ import SearchBar from "./SearchBar";
 import DetailRow from "./DetailRow";
 import FooterNav from "./FooterNav";
 import { useState } from "react";
+import FadeInOut from "../Utility/FadeInOut";
 
 const DetailsPanel = () => {
   const [activeTab, setActiveTab] = useState("details");
@@ -48,7 +49,14 @@ const DetailsPanel = () => {
           Forecast
         </p>
       </div>
-      {activeTab === "details" ? detailsTab : forecastTab}
+      {activeTab === "details" && (
+        <FadeInOut isMounted={activeTab === "details"}>{detailsTab}</FadeInOut>
+      )}
+      {activeTab === "forecast" && (
+        <FadeInOut isMounted={activeTab === "forecast"}>
+          {forecastTab}
+        </FadeInOut>
+      )}
       <FooterNav />
     </div>
   );
