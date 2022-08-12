@@ -4,12 +4,8 @@ import { IWeatherData } from "../@types/weather";
 const useFetchWeather = (location: string) => {
   const [weatherData, setWeatherData] = useState<IWeatherData | null>(null);
 
+
   const formatData = (data: IWeatherData) => {
-    if (data.error) {
-      return {
-        ...data,
-      };
-    }
     const {
       location: { name, region, country },
       current: {
@@ -46,6 +42,8 @@ const useFetchWeather = (location: string) => {
   useEffect(() => {
     const API_KEY: string = import.meta.env.VITE_API_KEY;
     const url = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}`;
+
+    if (location === "" || location === null) return;
 
     fetch(url)
       .then((res) => {

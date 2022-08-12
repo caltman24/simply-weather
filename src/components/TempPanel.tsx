@@ -21,6 +21,7 @@ const TempPanel = ({ weatherData }: TempPanelProps) => {
       </span>
       <div className="temp-location">
         <p className="city">{location?.name}</p>
+        <p className="country">{location?.region}</p>
         <p className="country">{location?.country}</p>
       </div>
     </div>
