@@ -10,14 +10,5 @@ export default defineConfig({
       plugins: [autoprefixer],
     },
   },
-  server: {
-    proxy: {
-      "/unsplash-api": {
-        target: "https://api.unsplash.com/",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/unsplash-api/, ""),
-      },
-    },
-  },
   envDir: "./src",
 });

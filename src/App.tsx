@@ -15,15 +15,9 @@ const App = () => {
   const { weatherData } = useFetchWeather(currentLocation as string);
   const conditionText = weatherData?.current.condition.text;
 
-  const unsplashProxyUrl = "unsplash-api";
-  const apiUrl =
-    import.meta.env.MODE === "development"
-      ? `http://localhost:5173/${unsplashProxyUrl}`
-      : `https://ca-simply-weather.netlify.app/${unsplashProxyUrl}`;
-
   // unsplash api
   const unsplashAPI = createApi({
-    apiUrl,
+    apiUrl: "https://api.unsplash.com/",
     accessKey: import.meta.env.VITE_UNSPLASH_KEY,
     headers: {
       "content-type": "application/json",
