@@ -22,6 +22,7 @@ const App = () => {
     headers: {
       "content-type": "application/json",
       accecpt: "application/json",
+      Authorization: `Client-ID ${import.meta.env.VITE_UNSPLASH_KEY}`,
     },
   });
 
