@@ -53,7 +53,10 @@ const useFetchWeather = (location: string) => {
         else throw new Error("No Matching Location Found");
       })
       .then((data: IWeatherData) => setWeatherData(formatData(data)))
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        alert(err.message);
+      });
   }, [location]);
   return { weatherData };
 };

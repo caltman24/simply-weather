@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import DetailsPanel from "./components/DeatilsPanel/DetailsPanel";
 import TempPanel from "./components/TempPanel";
@@ -10,14 +10,6 @@ import { WeatherDataContextType } from "./@types/weather";
 const App = () => {
   const [currentLocation, setCurrentLocation] = useState("46815");
   const { weatherData } = useFetchWeather(currentLocation as string);
-
-  useEffect(() => {
-    if (weatherData?.error) {
-      alert(weatherData.error.message);
-    }
-  }, [weatherData]);
-
-  console.log(currentLocation);
 
   const providerValue: WeatherDataContextType = {
     weatherData,
