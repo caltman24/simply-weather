@@ -1,62 +1,34 @@
-import "./assets/scss/main.scss";
-import TempPanel from "./components/TempPanel";
+import { useEffect, useState } from "react";
+
 import DetailsPanel from "./components/DeatilsPanel/DetailsPanel";
-import { WeatherDataProvider } from "./WeatherDataContext";
-import { useState, useEffect } from "react";
-import {
-  ISearchData,
-  WeatherDataContextType,
-  IWeatherData,
-} from "./@types/weather";
+import TempPanel from "./components/TempPanel";
 import useFetchWeather from "./hooks/useFetchWeather";
+import { WeatherDataProvider } from "./WeatherDataContext";
 
-/*
-  List of data needed from the API:
-    {
-      "location": {
-        name,
-        region,
-        country,
-      },
-      "current": {
-        temp_f,
-        condition : {all},
-        wind_mph,
-        wind_degree,
-        wind_dir,
-        precip_in,
-        humidity,
-        cloud
-      }
-    }
-
-*/
-
-// TODO: fetch data from API with current location. Format the data and store it in the state.
-// TODO: change "any" type to the correct type for data returned from the API.
-// TODO: Create an interface for the formated data.
+import { WeatherDataContextType } from "./@types/weather";
 
 const App = () => {
-  const [searchData, setSearchData] = useState<ISearchData[]>([]);
-  const [currentLocation, setCurrentLocation] = useState("London");
-  const [weatherData, setWeatherData] = useState<any>({});
-  const { data } = useFetchWeather(currentLocation);
+  const [currentLocation, setCurrentLocation] = useState("46815");
+  const { weatherData } = useFetchWeather(currentLocation as string);
 
   useEffect(() => {
-    setWeatherData(data);
-  }, [data, currentLocation]);
+    if (weatherData?.error) {
+      alert(weatherData.error.message);
+    }
+  }, [weatherData]);
+
+  console.log(currentLocation);
 
   const providerValue: WeatherDataContextType = {
-    searchData,
     weatherData,
-    setSearchData,
+    setCurrentLocation,
   };
 
   return (
     <div className="App">
       <main>
+        <TempPanel weatherData={weatherData} />
         <WeatherDataProvider value={providerValue}>
-          <TempPanel />
           <DetailsPanel />
         </WeatherDataProvider>
       </main>

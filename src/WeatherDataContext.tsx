@@ -3,7 +3,7 @@ import { WeatherDataContextType } from "./@types/weather";
 
 interface WeatherDataProviderProps {
   children: React.ReactNode;
-  value: any;
+  value: WeatherDataContextType;
 }
 
 const WeatherDataContext = createContext<WeatherDataContextType | null>(null);

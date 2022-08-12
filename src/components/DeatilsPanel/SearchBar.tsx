@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import SearchIcon from "../Utility/SearchIcon";
 import FadeInOut from "../Utility/FadeInOut";
-import { useContext } from "react";
 import WeatherDataContext from "../../WeatherDataContext";
 import { ISearchData, WeatherDataContextType } from "../../@types/weather";
 
 const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchData, setSearchData] = useState<ISearchData[]>([]);
   const [isSearching, setIsSearching] = useState(false);
-  const { searchData, setSearchData } = useContext(
+  const { setCurrentLocation } = useContext(
     WeatherDataContext
   ) as WeatherDataContextType;
 
   useEffect(() => {
-    searchData.length > 0 ? setIsSearching(true) : setIsSearching(false);
-    searchAPI(searchTerm);
-  }, [searchTerm, searchData]);
+    searchAPI(searchTerm).then((data) => {
+      if (!data) return;
+      setSearchData(data);
+    });
+  }, [searchTerm]);
 
   const searchAPI = async (location: string) => {
     if (location === "") return;
@@ -30,12 +32,12 @@ const SearchBar = () => {
         return {
           name: item.name,
           region: item.region,
-          country: item.country,
           id: item.id,
+          url: item.url,
         } as ISearchData;
       });
 
-      setSearchData(formatedData);
+      return formatedData;
     } catch (error) {
       console.log(error);
     }
@@ -46,11 +48,25 @@ const SearchBar = () => {
   };
 
   const handleClick = () => {
-    console.log("Searching for:", searchTerm);
+    if (searchTerm === "") return;
+    setCurrentLocation(searchTerm);
+    setSearchData([]);
+    setSearchTerm("");
+  };
+
+  const selectSearchItem = (item: ISearchData) => {
+    setCurrentLocation(item.url as string);
+    setIsSearching(false);
+    setSearchData([]);
+    setSearchTerm("");
   };
 
   const searchResults = searchData.map((item: ISearchData) => {
-    return <li key={item.id}>{item.name}</li>;
+    return (
+      <li key={item.id} onClick={() => selectSearchItem(item)}>
+        {item.name}, {item.region}
+      </li>
+    );
   });
 
   return (
@@ -58,11 +74,16 @@ const SearchBar = () => {
       <div className="search-input">
         <input
           type="text"
-          placeholder="Another Location"
+          placeholder="City, Zip, Lat / Long, or IP Address"
           value={searchTerm}
+          onFocus={() => setIsSearching(true)}
+          onBlur={() => setIsSearching(false)}
           onChange={handleChange}
         />
-        <FadeInOut isMounted={isSearching} className="search-input-results">
+        <FadeInOut
+          isMounted={isSearching && searchTerm.length > 0}
+          className="search-input-results"
+        >
           <ul>{searchResults}</ul>
         </FadeInOut>
       </div>

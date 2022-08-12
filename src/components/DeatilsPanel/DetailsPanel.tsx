@@ -1,25 +1,38 @@
-import SearchBar from "./SearchBar";
+import { useState, useContext } from "react";
+import { WeatherDataContextType } from "../../@types/weather";
+import WeatherDataContext from "../../WeatherDataContext";
+
+import FadeInOut from "../Utility/FadeInOut";
 import DetailRow from "./DetailRow";
 import FooterNav from "./FooterNav";
-import { useState } from "react";
-import FadeInOut from "../Utility/FadeInOut";
+import SearchBar from "./SearchBar";
 
 const DetailsPanel = () => {
   const [activeTab, setActiveTab] = useState("details");
+
+  const { weatherData } = useContext(
+    WeatherDataContext
+  ) as WeatherDataContextType;
+
+  const { current } = weatherData || {};
 
   const detailsTab = (
     <div className="details-tab tab-container">
       <div className="weather-details detail-section">
         <p>Weather Details</p>
-        <DetailRow title="Cloudy" value="0%" />
-        <DetailRow title="Precipitation" value="0 in" />
-        <DetailRow title="Humidity" value="34%" />
+        <DetailRow title="Cloudy" value={current?.cloud} unit="%" />
+        <DetailRow
+          title="Precipitation"
+          value={current?.precip_in}
+          unit=" in"
+        />
+        <DetailRow title="Humidity" value={current?.humidity} unit="%" />
       </div>
       <div className="wind-details detail-section">
         <p>Wind Details</p>
-        <DetailRow title="Speed" value="34 m/h" />
-        <DetailRow title="Degree" value="34" />
-        <DetailRow title="Direction" value="N" />
+        <DetailRow title="Speed" value={current?.wind_mph} unit=" m/h" />
+        <DetailRow title="Degree" value={current?.wind_degree} unit="°" />
+        <DetailRow title="Direction" value={current?.wind_dir} />
       </div>
     </div>
   );

@@ -1,15 +1,9 @@
 export interface ISearchData {
   name?: string;
   region?: string;
-  country?: string;
-  id: string | number;
+  id?: string | number;
+  url?: string;
 }
-
-export type WeatherDataContextType = {
-  searchData: ISearchData[];
-  weatherData: any;
-  setSearchData: (searchData: ISearchData[]) => void;
-};
 
 export interface IWeatherData {
   location: {
@@ -30,4 +24,12 @@ export interface IWeatherData {
     humidity: number | string;
     cloud: number | string;
   };
+  error?: {
+    message: string;
+  }
 }
+
+export type WeatherDataContextType = {
+  weatherData: IWeatherData | null;
+  setCurrentLocation: (location: string) => void;
+};
