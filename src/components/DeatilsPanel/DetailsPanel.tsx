@@ -7,8 +7,10 @@ import DetailRow from "./DetailRow";
 import FooterNav from "./FooterNav";
 import SearchBar from "./SearchBar";
 
+type activeTabType = "details" | "forecast";
+
 const DetailsPanel = () => {
-  const [activeTab, setActiveTab] = useState("details");
+  const [activeTab, setActiveTab] = useState<activeTabType>("details");
 
   const { weatherData } = useContext(
     WeatherDataContext

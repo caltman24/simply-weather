@@ -7,6 +7,9 @@ import { WeatherDataProvider } from "./WeatherDataContext";
 
 import { WeatherDataContextType } from "./@types/weather";
 
+// TODO: Finish Forecast Panel
+// TODO: Dynamic background based on weather condition
+
 const App = () => {
   const [currentLocation, setCurrentLocation] = useState("46815");
   const { weatherData } = useFetchWeather(currentLocation as string);
