@@ -8,7 +8,8 @@ const DetailRow = ({ title, value, unit }: DetailRowProps) => {
   return (
     <div className="detail-row">
       <p className="name">{title}</p>
-      <p className="value">{`${value}${unit}`}</p>
+      {/* If value is undefined then return 0 */}
+      <p className="value">{`${value || 0}${unit}`}</p>
     </div>
   );
 };

@@ -5,12 +5,16 @@ import TempPanel from "./components/TempPanel";
 import useFetchPhoto from "./hooks/useFetchPhoto";
 import useFetchWeather from "./hooks/useFetchWeather";
 import { WeatherDataProvider } from "./WeatherDataContext";
-import { WeatherDataContextType, ConditionText } from "./@types/weather";
+import {
+  WeatherDataContextType,
+  ConditionText,
+  CurrentLocation,
+} from "./@types/weather";
 
 // TODO: Finish Forecast Panel
 
 const App = () => {
-  const [currentLocation, setCurrentLocation] = useState("Indianapolis");
+  const [currentLocation, setCurrentLocation] = useState<CurrentLocation>(null);
   const { weatherData } = useFetchWeather(currentLocation);
   const conditionText: ConditionText = weatherData?.current.condition.text;
   const photo = useFetchPhoto(conditionText, weatherData);
@@ -27,10 +31,15 @@ const App = () => {
   useEffect(() => {
     // Ask for permission to use geolocation and set current location state to
     // the given latitude and longitude
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords;
-      setCurrentLocation(`${latitude}, ${longitude}`);
-    });
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setCurrentLocation(`${latitude}, ${longitude}`);
+      },
+      () => {
+        setCurrentLocation("Indianapolis");
+      }
+    );
   }, []);
 
   const providerValue: WeatherDataContextType = {

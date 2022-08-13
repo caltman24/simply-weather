@@ -18,6 +18,8 @@ const DetailsPanel = () => {
 
   const { current } = weatherData || {};
 
+  // If there the value provided in DetailRow is undefined or null, the value will be set to 0. (For loading purposes)
+
   const detailsTab = (
     <div className="details-tab tab-container">
       <div className="weather-details detail-section">

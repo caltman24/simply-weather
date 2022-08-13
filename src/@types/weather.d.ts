@@ -35,5 +35,5 @@ export type WeatherDataContextType = {
 };
 
 export type WeatherData = IWeatherData | null;
-
 export type ConditionText = string | undefined;
+export type CurrentLocation = string | null;
