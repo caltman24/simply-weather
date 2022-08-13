@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { IWeatherData } from "../@types/weather";
+import { IWeatherData, WeatherData } from "../@types/weather";
 
 const useFetchWeather = (location: string) => {
-  const [weatherData, setWeatherData] = useState<IWeatherData | null>(null);
-
+  const [weatherData, setWeatherData] = useState<WeatherData>(null);
 
   const formatData = (data: IWeatherData) => {
     const {

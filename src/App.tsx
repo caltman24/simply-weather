@@ -1,42 +1,28 @@
 import { useEffect, useState } from "react";
-import { createApi } from "unsplash-js";
 
 import DetailsPanel from "./components/DeatilsPanel/DetailsPanel";
 import TempPanel from "./components/TempPanel";
+import useFetchPhoto from "./hooks/useFetchPhoto";
 import useFetchWeather from "./hooks/useFetchWeather";
 import { WeatherDataProvider } from "./WeatherDataContext";
-
-import { WeatherDataContextType } from "./@types/weather";
+import { WeatherDataContextType, ConditionText } from "./@types/weather";
 
 // TODO: Finish Forecast Panel
 
 const App = () => {
   const [currentLocation, setCurrentLocation] = useState("Indianapolis");
-  const { weatherData } = useFetchWeather(currentLocation as string);
-  const conditionText = weatherData?.current.condition.text;
+  const { weatherData } = useFetchWeather(currentLocation);
+  const conditionText: ConditionText = weatherData?.current.condition.text;
+  const photo = useFetchPhoto(conditionText, weatherData);
 
-  // unsplash api
-  const unsplashAPI = createApi({
-    apiUrl: "https://api.unsplash.com/",
-    accessKey: import.meta.env.VITE_UNSPLASH_KEY,
-    headers: {
-      "content-type": "application/json",
-      accecpt: "application/json",
-    },
-  });
+  // By default, the current location is Indianapolis. We then ask the user for their location. If it is provided we update the current location to the lat / long. If not, we use the default location. Then we fetch the weather data using the current location. After that, we fetch the photo using the condition text given by the weather data and set the background image to the photo url returned.
 
-  const getRandomPhoto = async (keyword: string) => {
-    const response = await unsplashAPI.photos.getRandom({
-      query: keyword,
-    });
-    console.log(response);
-    return response;
-  };
-
-  const providerValue: WeatherDataContextType = {
-    weatherData,
-    setCurrentLocation,
-  };
+  // Everytime the photo changes then update the background image
+  useEffect(() => {
+    if (photo) {
+      document.body.style.backgroundImage = `url(${photo})`;
+    }
+  }, [photo]);
 
   useEffect(() => {
     // Ask for permission to use geolocation and set current location state to
@@ -45,18 +31,12 @@ const App = () => {
       const { latitude, longitude } = position.coords;
       setCurrentLocation(`${latitude}, ${longitude}`);
     });
-    if (weatherData) {
-      // TODO: tinker with photo query params
-      getRandomPhoto(conditionText as string)
-        .then((result) => {
-          if (result.errors) return;
-          const photo = result.response as any;
-          const url = photo.urls.raw + "&dpr=1&fit=crop&w=1920&h=1080";
-          document.body.style.backgroundImage = `url(${url})`;
-        })
-        .catch((err) => console.error(err));
-    }
-  }, [conditionText]);
+  }, []);
+
+  const providerValue: WeatherDataContextType = {
+    weatherData,
+    setCurrentLocation,
+  };
 
   return (
     <div className="App">
