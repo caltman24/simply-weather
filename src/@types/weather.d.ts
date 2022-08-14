@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface ISearchData {
   name?: string;
   region?: string;
@@ -14,6 +16,7 @@ export interface IWeatherData {
   current: {
     last_updated: string;
     temp_f: number | string;
+    temp_c: number | string;
     condition: {
       text: string;
       icon: string;
@@ -30,11 +33,27 @@ export interface IWeatherData {
   };
 }
 
-export type WeatherDataContextType = {
-  weatherData: IWeatherData | null;
-  setCurrentLocation: (location: string) => void;
-};
-
 export type WeatherData = IWeatherData | null;
 export type ConditionText = string | undefined;
 export type CurrentLocation = string | null;
+
+export type WeatherDataContextType = {
+  weatherData: WeatherData;
+  appSettings: AppSettings;
+  setAppSettings: React.Dispatch<React.SetStateAction<AppSettings>>;
+  setCurrentLocation: React.Dispatch<React.SetStateAction<CurrentLocation>>;
+};
+
+export interface SwitchInputOptions {
+  id: string;
+  value: string;
+  checked: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  label: string;
+}
+
+export interface ToggleSwitchOptions {
+  option1: SwitchInputOptions;
+  option2: SwitchInputOptions;
+  state: any;
+}

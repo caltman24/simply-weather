@@ -1,33 +1,41 @@
 import { useEffect, useState } from "react";
 
-import DetailsPanel from "./components/DeatilsPanel/DetailsPanel";
-import TempPanel from "./components/TempPanel";
-import useFetchPhoto from "./hooks/useFetchPhoto";
-import useFetchWeather from "./hooks/useFetchWeather";
-import { WeatherDataProvider } from "./WeatherDataContext";
+import { AppSettings } from "./@types/settings";
 import {
-  WeatherDataContextType,
   ConditionText,
   CurrentLocation,
+  WeatherDataContextType,
 } from "./@types/weather";
+import DetailsPanel from "./components/DeatilsPanel/DetailsPanel";
+import TempPanel from "./components/TempPanel";
+import useFetchWeather from "./hooks/useFetchWeather";
+import useFetchPhoto from "./hooks/useFetchPhoto";
+import { WeatherDataProvider } from "./WeatherDataContext";
 
-// TODO: Finish Forecast Panel
+// TODO: 2. Finish Forecast Panel
 
 const App = () => {
   const [currentLocation, setCurrentLocation] = useState<CurrentLocation>(null);
+
+  const [appSettings, setAppSettings] = useState<AppSettings>({
+    tempUnit: "ferinheit",
+  });
+
   const { weatherData } = useFetchWeather(currentLocation);
   const conditionText: ConditionText = weatherData?.current.condition.text;
+
+  // FIXME: Uncomment the photo fetching code when ready to deploy. This is a temporary fix to prevent uneeded API calls for rate limiting.
   const photo = useFetchPhoto(conditionText, weatherData);
 
-  // By default, the current location is Indianapolis. We then ask the user for their location. If it is provided we update the current location to the lat / long. If not, we use the default location. Then we fetch the weather data using the current location. After that, we fetch the photo using the condition text given by the weather data and set the background image to the photo url returned.
-
   // Everytime the photo changes then update the background image
+  // photo change useEffect
   useEffect(() => {
     if (photo) {
       document.body.style.backgroundImage = `url(${photo})`;
     }
   }, [photo]);
 
+  // Geolocation UseEffect
   useEffect(() => {
     // Ask for permission to use geolocation and set current location state to
     // the given latitude and longitude
@@ -40,18 +48,28 @@ const App = () => {
         setCurrentLocation("Indianapolis");
       }
     );
+
+    // Check local storage for appSettings
+    if (localStorage.getItem("appSettings")) {
+      const storedSettings: AppSettings = JSON.parse(
+        localStorage.getItem("appSettings") || "{}"
+      );
+      setAppSettings(storedSettings);
+    }
   }, []);
 
   const providerValue: WeatherDataContextType = {
     weatherData,
     setCurrentLocation,
+    appSettings,
+    setAppSettings,
   };
 
   return (
     <div className="App">
       <main>
-        <TempPanel weatherData={weatherData} />
         <WeatherDataProvider value={providerValue}>
+          <TempPanel />
           <DetailsPanel />
         </WeatherDataProvider>
       </main>

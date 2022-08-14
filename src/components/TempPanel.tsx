@@ -1,14 +1,19 @@
-import { Fragment } from "react";
-import { WeatherData } from "../@types/weather";
+import { Fragment, useContext } from "react";
+import { WeatherDataContextType } from "../@types/weather";
+import WeatherDataContext from "../WeatherDataContext";
 import Clock from "./Utility/Clock";
 import RefreshButton from "./Utility/RefreshButton";
-interface TempPanelProps {
-  weatherData: WeatherData;
-}
 
-const TempPanel = ({ weatherData }: TempPanelProps) => {
-  const { temp_f, condition, last_updated } = weatherData?.current || {};
+const TempPanel = () => {
+  const { weatherData, appSettings } = useContext(
+    WeatherDataContext
+  ) as WeatherDataContextType;
+
+  const { temp_f, temp_c, condition, last_updated } =
+    weatherData?.current || {};
   const { location } = weatherData || {};
+
+  const temperature = appSettings.tempUnit === "ferinheit" ? temp_f : temp_c;
 
   const reloadPage = () => {
     window.location.reload();
@@ -17,7 +22,7 @@ const TempPanel = ({ weatherData }: TempPanelProps) => {
   const weatherDetails = (
     <Fragment>
       <span className="temp-header">
-        <h2>{temp_f}°</h2>
+        <h2>{temperature}°</h2>
         <div className="temp-condition">
           <img src={condition?.icon} alt={condition?.text} />
           <p>{condition?.text}</p>

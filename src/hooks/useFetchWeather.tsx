@@ -10,6 +10,7 @@ const useFetchWeather = (location: CurrentLocation) => {
       current: {
         last_updated,
         temp_f,
+        temp_c,
         condition: { text, icon },
         wind_mph,
         wind_degree,
@@ -29,6 +30,7 @@ const useFetchWeather = (location: CurrentLocation) => {
       current: {
         last_updated,
         temp_f,
+        temp_c,
         condition: { text, icon },
         wind_mph,
         wind_degree,

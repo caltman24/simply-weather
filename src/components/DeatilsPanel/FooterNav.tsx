@@ -1,10 +1,17 @@
 import BrandLogo from "../Utility/BrandLogo";
 import SettingsIcon from "../Utility/SettingsIcon";
+import SettingsModal from "./SettingsModal";
+import { useState } from "react";
+
+// TODO: 1. FINISH MODAL
 
 const FooterNav = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   const handleSettingsClick = () => {
-    console.log("Settings clicked");
+    setModalOpen((prev) => !prev);
   };
+
   return (
     <nav className="footer-nav">
       <span className="brand">
@@ -13,10 +20,13 @@ const FooterNav = () => {
           Simply<span className="clr-yellow">Weather</span>
         </p>
       </span>
-      <SettingsIcon
-        className="settings-icon"
-        handleClick={handleSettingsClick}
-      />
+      <div className="settings">
+        <SettingsIcon
+          className="settings-icon"
+          handleClick={handleSettingsClick}
+        />
+        <SettingsModal isOpen={modalOpen} setOpen={() => setModalOpen(false)} />
+      </div>
     </nav>
   );
 };
