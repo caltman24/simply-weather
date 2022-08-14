@@ -12,6 +12,7 @@ export interface IWeatherData {
     country: string;
   };
   current: {
+    last_updated: string;
     temp_f: number | string;
     condition: {
       text: string;
@@ -26,7 +27,7 @@ export interface IWeatherData {
   };
   error?: {
     message: string;
-  }
+  };
 }
 
 export type WeatherDataContextType = {

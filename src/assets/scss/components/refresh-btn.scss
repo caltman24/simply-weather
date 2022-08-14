@@ -1,0 +1,29 @@
+@use "../abstracts/mixins.scss" as mixins;
+
+.refresh-btn {
+  svg {
+    fill: var(--clr-light);
+    fill-opacity: 0.5;
+    fill-rule: nonzero;
+    width: 20px;
+    height: 20px;
+    transition: all 0.25s linear;
+  }
+  &:active {
+    svg {
+      fill: #fff;
+      fill-opacity: 1;
+      transition: all 0.25s linear;
+    }
+  }
+  @include mixins.hoverMq {
+    &:hover {
+      svg {
+        fill: #fff;
+        fill-opacity: 1;
+      }
+      cursor: pointer;
+      transition: all 0.25s linear;
+    }
+  }
+}

@@ -8,6 +8,7 @@ const useFetchWeather = (location: CurrentLocation) => {
     const {
       location: { name, region, country },
       current: {
+        last_updated,
         temp_f,
         condition: { text, icon },
         wind_mph,
@@ -26,6 +27,7 @@ const useFetchWeather = (location: CurrentLocation) => {
         country,
       },
       current: {
+        last_updated,
         temp_f,
         condition: { text, icon },
         wind_mph,

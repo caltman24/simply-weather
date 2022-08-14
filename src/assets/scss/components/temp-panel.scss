@@ -1,9 +1,12 @@
+@use "./refresh-btn.scss" as refreshBtn;
+
 .temp-panel {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 1em;
+  justify-content: space-between;
+  padding: 1em 1em 0.15em 1em;
+  height: 100%;
 }
 
 .temp-header {
@@ -18,7 +21,7 @@
   }
 }
 
-.temp-condition  {
+.temp-condition {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,6 +37,7 @@
     font-size: 1.1rem;
     font-weight: 300;
     transform: translateY(-0.5em);
+    max-width: 18ch;
   }
 }
 
@@ -52,4 +56,14 @@
     font-size: 1.1rem;
     font-weight: 300;
   }
+}
+
+.last-updated {
+  margin-top: 1em;
+  font-weight: 300;
+  color: var(--clr-light);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
