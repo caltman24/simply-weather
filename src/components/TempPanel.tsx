@@ -13,7 +13,10 @@ const TempPanel = () => {
     weatherData?.current || {};
   const { location } = weatherData || {};
 
-  const temperature = appSettings.tempUnit === "ferinheit" ? temp_f : temp_c;
+  const temperature =
+    appSettings.tempUnit === "ferinheit"
+      ? `${parseFloat(temp_f as string).toFixed(0)}° F`
+      : `${parseFloat(temp_c as string).toFixed(0)}° C`;
 
   const reloadPage = () => {
     window.location.reload();
@@ -22,7 +25,7 @@ const TempPanel = () => {
   const weatherDetails = (
     <Fragment>
       <span className="temp-header">
-        <h2>{temperature}°</h2>
+        <h2>{temperature}</h2>
         <div className="temp-condition">
           <img src={condition?.icon} alt={condition?.text} />
           <p>{condition?.text}</p>

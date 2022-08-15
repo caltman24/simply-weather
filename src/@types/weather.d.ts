@@ -1,4 +1,5 @@
 import React from "react";
+import { AppSettings } from "./settings";
 
 export interface ISearchData {
   name?: string;
@@ -15,18 +16,19 @@ export interface IWeatherData {
   };
   current: {
     last_updated: string;
-    temp_f: number | string;
-    temp_c: number | string;
+    temp_f: string;
+    temp_c: string;
     condition: {
       text: string;
       icon: string;
     };
-    wind_mph: number | string;
-    wind_dir: number | string;
-    wind_degree: number | string;
-    precip_in: number | string;
-    humidity: number | string;
-    cloud: number | string;
+    wind_mph: string;
+    wind_kph: string;
+    wind_dir: string;
+    wind_degree: string;
+    precip_in: string;
+    humidity: string;
+    cloud: string;
   };
   error?: {
     message: string;

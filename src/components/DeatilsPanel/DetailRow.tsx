@@ -1,7 +1,7 @@
 interface DetailRowProps {
   title?: string;
   value?: number | string;
-  unit?: string;
+  unit: string;
 }
 
 const DetailRow = ({ title, value, unit }: DetailRowProps) => {

@@ -19,6 +19,7 @@ const App = () => {
 
   const [appSettings, setAppSettings] = useState<AppSettings>({
     tempUnit: "ferinheit",
+    speedUnit: "mph",
   });
 
   const { weatherData } = useFetchWeather(currentLocation);

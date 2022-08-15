@@ -12,7 +12,7 @@ type activeTabType = "details" | "forecast";
 const DetailsPanel = () => {
   const [activeTab, setActiveTab] = useState<activeTabType>("details");
 
-  const { weatherData } = useContext(
+  const { weatherData, appSettings } = useContext(
     WeatherDataContext
   ) as WeatherDataContextType;
 
@@ -34,7 +34,15 @@ const DetailsPanel = () => {
       </div>
       <div className="wind-details detail-section">
         <p>Wind Details</p>
-        <DetailRow title="Speed" value={current?.wind_mph} unit=" m/h" />
+        <DetailRow
+          title="Speed"
+          value={
+            appSettings.speedUnit === "mph"
+              ? current?.wind_mph
+              : current?.wind_kph
+          }
+          unit={` ${appSettings.speedUnit}`}
+        />
         <DetailRow title="Degree" value={current?.wind_degree} unit="°" />
         <DetailRow title="Direction" value={current?.wind_dir} />
       </div>

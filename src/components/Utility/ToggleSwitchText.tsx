@@ -16,7 +16,7 @@ const ToggleSwitchText = ({ options }: ToggleSwitchProps) => {
         checked={option1.checked}
         onChange={option1.onChange}
       />
-      <label htmlFor="ferinheit-option">{option1.label}</label>
+      <label htmlFor={option1.id}>{option1.label}</label>
       <input
         id={option2.id}
         type="radio"
@@ -24,7 +24,7 @@ const ToggleSwitchText = ({ options }: ToggleSwitchProps) => {
         checked={option2.checked}
         onChange={option2.onChange}
       />
-      <label htmlFor="celsius-option">{option2.label}</label>
+      <label htmlFor={option2.id}>{option2.label}</label>
       <span
         className="toggle-switch-active"
         style={{
