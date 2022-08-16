@@ -33,8 +33,6 @@ const ForecastDay = ({ forecastDay }: ForecastDayProps) => {
 
   const { dayOfMonth, month, dayOfWeek } = formatDateEpoch(date_epoch);
 
-  //    TODO: Format the date from "yyyy-mm-dd" to "m/d" and find the corresponding day of the week.
-
   const { speedUnit, tempUnit } = appSettings;
   return (
     <div className="forecast-day">
