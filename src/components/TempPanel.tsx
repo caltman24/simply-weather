@@ -15,8 +15,8 @@ const TempPanel = () => {
 
   const temperature =
     appSettings.tempUnit === "ferinheit"
-      ? `${parseFloat(temp_f as string).toFixed(0)}° F`
-      : `${parseFloat(temp_c as string).toFixed(0)}° C`;
+      ? `${temp_f?.toFixed(0)}° F`
+      : `${temp_c?.toFixed(0)}° C`;
 
   const reloadPage = () => {
     window.location.reload();

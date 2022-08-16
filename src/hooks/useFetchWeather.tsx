@@ -5,7 +5,6 @@ const useFetchWeather = (location: CurrentLocation) => {
   const [weatherData, setWeatherData] = useState<WeatherData>(null);
 
   const formatData = (data: IWeatherData) => {
-    console.log(data);
     const {
       location: { name, region, country },
       current: {

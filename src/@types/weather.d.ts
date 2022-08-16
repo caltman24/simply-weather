@@ -2,16 +2,16 @@ import React from "react";
 import { AppSettings } from "./settings";
 
 export interface IForecastDay {
-  date: string;
+  date_epoch: number;
   day: {
-    maxtemp_c: string;
-    maxtemp_f: string;
-    mintemp_f: string;
-    mintemp_c: string;
-    avgtemp_c: string;
-    avgtemp_f: string;
-    maxwind_mph: string;
-    maxwind_kph: string;
+    maxtemp_c: number;
+    maxtemp_f: number;
+    mintemp_f: number;
+    mintemp_c: number;
+    avgtemp_c: number;
+    avgtemp_f: number;
+    maxwind_mph: number;
+    maxwind_kph: number;
     condition: {
       icon: string;
     };
@@ -33,19 +33,19 @@ export interface IWeatherData {
   };
   current: {
     last_updated: string;
-    temp_f: string;
-    temp_c: string;
+    temp_f: number;
+    temp_c: number;
     condition: {
       text: string;
       icon: string;
     };
-    wind_mph: string;
-    wind_kph: string;
+    wind_mph: number;
+    wind_kph: number;
     wind_dir: string;
-    wind_degree: string;
-    precip_in: string;
-    humidity: string;
-    cloud: string;
+    wind_degree: number;
+    precip_in: number;
+    humidity: number;
+    cloud: number;
   };
   forecast: {
     forecastday: IForecastDay[];

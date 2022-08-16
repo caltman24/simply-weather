@@ -79,27 +79,42 @@
 
 .forecast-day {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   background-color: hsla(0, 0%, 95%, 0.1);
   box-shadow: 0px 0px 3px 1px hsla(0, 0%, 35%, 0.2);
   border-radius: 15px;
   padding: 1em 0.75em;
 
-  .date,
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4vw;
+  }
+
   .condition,
-  .wind,
-  .temps {
+  .wind {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
 
+  .wind {
+    width: 9ch;
+  }
+
   .temps {
-    font-size: 1.1rem;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     gap: 0.5em;
+
+    span {
+      color: var(--clr-light);
+    }
   }
 
   .date {
@@ -108,9 +123,9 @@
     }
 
     p:nth-of-type(2) {
-      font-size: 1.2rem;
       letter-spacing: 2px;
     }
+    width: 9ch;
   }
 }
 

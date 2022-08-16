@@ -12,7 +12,26 @@ const ForecastDay = ({ forecastDay }: ForecastDayProps) => {
     WeatherDataContext
   ) as WeatherDataContextType;
 
-  const { date, day } = forecastDay;
+  const { date_epoch, day } = forecastDay;
+
+  function formatDateEpoch(epoch: number) {
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const date = new Date(epoch * 1000);
+    const dayOfMonth = date.getUTCDate();
+    const dayOfWeek = days[date.getUTCDay()];
+    const month = date.getUTCMonth() + 1;
+    return { dayOfMonth, month, dayOfWeek };
+  }
+
+  const { dayOfMonth, month, dayOfWeek } = formatDateEpoch(date_epoch);
 
   //    TODO: Format the date from "yyyy-mm-dd" to "m/d" and find the corresponding day of the week.
 
@@ -20,37 +39,39 @@ const ForecastDay = ({ forecastDay }: ForecastDayProps) => {
   return (
     <div className="forecast-day">
       <div className="date">
-        <p>{date}</p>
-        {/* <p>8/09</p> */}
+        <p>{dayOfWeek}</p>
+        <p>{`${month} / ${dayOfMonth}`}</p>
       </div>
-      <div className="wind">
-        <img src={windImg} width={40} />
-        <p>
-          {speedUnit === "mph"
-            ? `${day.maxwind_mph} mph`
-            : `${day.maxwind_kph} kph`}
-        </p>
-      </div>
-      <div className="condition">
-        <img src={day.condition.icon} width={45} />
-        <p>
-          {tempUnit === "ferinheit"
-            ? `${day.avgtemp_f} °F`
-            : `${day.avgtemp_c} °C`}
-        </p>
+      <div className="center">
+        <div className="wind">
+          <img src={windImg} width={40} />
+          <p>
+            {speedUnit === "mph"
+              ? `${day.maxwind_mph} mph`
+              : `${day.maxwind_kph} kph`}
+          </p>
+        </div>
+        <div className="condition">
+          <img src={day.condition.icon} width={45} />
+          <p>
+            {tempUnit === "ferinheit"
+              ? `${day.avgtemp_f.toFixed(0)} °F`
+              : `${day.avgtemp_c.toFixed(0)} °C`}
+          </p>
+        </div>
       </div>
       <div className="temps">
         <p>
-          H:{" "}
+          <span>H: </span>
           {tempUnit === "ferinheit"
-            ? `${day.maxtemp_f} °F`
-            : `${day.maxtemp_c} °C`}
+            ? `${day.maxtemp_f.toFixed(0)} °F`
+            : `${day.maxtemp_c.toFixed(0)} °C`}
         </p>
         <p>
-          L:{" "}
+          <span>L: </span>
           {tempUnit === "ferinheit"
-            ? `${day.mintemp_f} °F`
-            : `${day.mintemp_c} °C`}
+            ? `${day.mintemp_f.toFixed(0)} °F`
+            : `${day.mintemp_c.toFixed(0)} °C`}
         </p>
       </div>
     </div>
