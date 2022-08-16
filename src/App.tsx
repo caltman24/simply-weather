@@ -12,6 +12,11 @@ import useFetchWeather from "./hooks/useFetchWeather";
 import useFetchPhoto from "./hooks/useFetchPhoto";
 import { WeatherDataProvider } from "./WeatherDataContext";
 
+// -----------------------------------------------------------------------------
+// TODO: 1. Implement netlify functions for api calls
+// TODO: 2. Implement a service worker for offline support
+// -----------------------------------------------------------------------------
+
 const App = () => {
   const [currentLocation, setCurrentLocation] = useState<CurrentLocation>(null);
 
@@ -21,15 +26,15 @@ const App = () => {
   });
 
   const { weatherData } = useFetchWeather(currentLocation);
+  // Grab the condition text from the weather data to use to get the photo from unsplash
   const conditionText: ConditionText = weatherData?.current.condition.text;
   const photo = useFetchPhoto(conditionText, weatherData);
 
   // Everytime the photo changes then update the background image
   // photo change useEffect
   useEffect(() => {
-    if (photo) {
-      document.body.style.backgroundImage = `url(${photo})`;
-    }
+    if (!photo) return;
+    document.body.style.backgroundImage = `url(${photo})`;
   }, [photo]);
 
   // Geolocation UseEffect
@@ -38,11 +43,13 @@ const App = () => {
     // the given latitude and longitude
     navigator.geolocation.getCurrentPosition(
       (position) => {
+        // user allowed geolocation
         const { latitude, longitude } = position.coords;
         setCurrentLocation(`${latitude}, ${longitude}`);
       },
       () => {
-        setCurrentLocation("Indianapolis");
+        // user denied geolocation
+        setCurrentLocation("Middelfart, Denmark");
       }
     );
 
