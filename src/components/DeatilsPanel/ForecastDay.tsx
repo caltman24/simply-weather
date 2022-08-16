@@ -44,7 +44,7 @@ const ForecastDay = ({ forecastDay }: ForecastDayProps) => {
       </div>
       <div className="center">
         <div className="wind">
-          <img src={windImg} width={40} />
+          <img src={windImg} />
           <p>
             {speedUnit === "mph"
               ? `${day.maxwind_mph} mph`
@@ -52,7 +52,7 @@ const ForecastDay = ({ forecastDay }: ForecastDayProps) => {
           </p>
         </div>
         <div className="condition">
-          <img src={day.condition.icon} width={45} />
+          <img src={day.condition.icon} />
           <p>
             {tempUnit === "ferinheit"
               ? `${day.avgtemp_f.toFixed(0)} °F`
