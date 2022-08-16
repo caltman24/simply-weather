@@ -28,20 +28,19 @@ const useFetchPhoto = (
   };
 
   useEffect(() => {
-    if (weatherData && conditionText) {
-      // TODO: tinker with photo query params
-      getRandomPhoto(conditionText as string)
-        .then((result) => {
-          if (result.errors) return;
-          const photo = result.response as any;
-          const url = photo.urls.raw + "&dpr=1&fit=crop&w=1920&h=1080";
-          setPhoto(url);
-        })
-        .catch((err) => {
-            console.error(err);
-            console.log(err.response)
-        });
-    }
+    if (!conditionText || !weatherData) return;
+    // TODO: tinker with photo query params
+    getRandomPhoto(conditionText as string)
+      .then((result) => {
+        if (result.errors) return;
+        const photo = result.response as any;
+        const url = photo.urls.raw + "&dpr=1&fit=crop&w=1920&h=1080";
+        setPhoto(url);
+      })
+      .catch((err) => {
+        console.error(err);
+        console.log(err.response);
+      });
   }, [conditionText, weatherData]);
   return photo;
 };
