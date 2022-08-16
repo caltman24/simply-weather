@@ -49,10 +49,10 @@ const useFetchWeather = (location: CurrentLocation) => {
   };
 
   useEffect(() => {
+    if (location === "" || location === null) return;
+
     const API_KEY: string = import.meta.env.VITE_API_KEY;
     const url = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=5&aqi=no&alerts=no`;
-
-    if (location === "" || location === null) return;
 
     fetch(url)
       .then((res) => {
