@@ -69,7 +69,7 @@ const DetailsPanel = () => {
           className={`tab ${activeTab === "details" && "active"}`}
           onClick={() => activeTab !== "details" && setActiveTab("details")}
         >
-          Deatils
+          Details
         </p>
         <p
           className={`tab ${activeTab === "forecast" && "active"}`}

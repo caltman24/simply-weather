@@ -12,8 +12,6 @@ import useFetchWeather from "./hooks/useFetchWeather";
 import useFetchPhoto from "./hooks/useFetchPhoto";
 import { WeatherDataProvider } from "./WeatherDataContext";
 
-// TODO: 2. Finish Forecast Panel
-
 const App = () => {
   const [currentLocation, setCurrentLocation] = useState<CurrentLocation>(null);
 

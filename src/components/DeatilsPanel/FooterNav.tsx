@@ -3,8 +3,6 @@ import SettingsIcon from "../Utility/SettingsIcon";
 import SettingsModal from "./SettingsModal";
 import { useState } from "react";
 
-// TODO: 1. FINISH MODAL
-
 const FooterNav = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
