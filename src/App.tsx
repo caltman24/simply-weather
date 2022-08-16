@@ -24,15 +24,15 @@ const App = () => {
   const conditionText: ConditionText = weatherData?.current.condition.text;
 
   // FIXME: Uncomment the photo fetching code when ready to deploy. This is a temporary fix to prevent uneeded API calls for rate limiting.
-  // const photo = useFetchPhoto(conditionText, weatherData);
+  const photo = useFetchPhoto(conditionText, weatherData);
 
   // Everytime the photo changes then update the background image
   // photo change useEffect
-  // useEffect(() => {
-  //   if (photo) {
-  //     document.body.style.backgroundImage = `url(${photo})`;
-  //   }
-  // }, [photo]);
+  useEffect(() => {
+    if (photo) {
+      document.body.style.backgroundImage = `url(${photo})`;
+    }
+  }, [photo]);
 
   // Geolocation UseEffect
   useEffect(() => {
