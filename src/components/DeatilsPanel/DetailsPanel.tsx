@@ -11,7 +11,7 @@ import ForecastDay from "./ForecastDay";
 type activeTabType = "details" | "forecast";
 
 const DetailsPanel = () => {
-  const [activeTab, setActiveTab] = useState<activeTabType>("details");
+  const [activeTab, setActiveTab] = useState<activeTabType>("forecast");
 
   const { weatherData, appSettings } = useContext(
     WeatherDataContext
@@ -54,9 +54,13 @@ const DetailsPanel = () => {
     <div className="forecast-tab tab-container">
       <div className="forecast-details detail-section">
         <p>Forecast Details</p>
-        {forecast?.forecastday.map((day, index) => {
-          return <ForecastDay forecastDay={day} key={index} />;
-        })}
+        {forecast ? (
+          forecast?.forecastday.map((day, index) => {
+            return <ForecastDay forecastDay={day} key={index} />;
+          })
+        ) : (
+          <small>Loading forecast...</small>
+        )}
       </div>
     </div>
   );
