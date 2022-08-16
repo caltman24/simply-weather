@@ -45,3 +45,58 @@ main {
   flex-direction: column;
   justify-content: space-between;
 }
+
+@media (min-width: 948px) {
+  main {
+    flex-direction: row;
+
+    .temp-panel {
+      width: 55%;
+
+      justify-content: space-between;
+      align-items: center;
+
+      & > .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 5em;
+      }
+    }
+
+    .temp-header {
+      h2 {
+        font-size: 6rem;
+      }
+      p {
+        font-size: 1.3rem;
+      }
+    }
+
+    .temp-location {
+      p.city {
+        font-size: 3rem;
+      }
+
+      p.country {
+        font-size: 1.5rem;
+      }
+    }
+
+    .details-panel {
+      width: 45%;
+      padding-top: 1em;
+
+      .detail-section {
+        gap: 3em;
+        margin-block: 1em;
+      }
+    }
+
+    .modal {
+      left: 50%;
+      transform: translateX(-50%);
+      top: 25%;
+      height: 500px;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import FadeInOut from "../Utility/FadeInOut";
 import DetailRow from "./DetailRow";
 import FooterNav from "./FooterNav";
 import SearchBar from "./SearchBar";
+import ForecastDay from "./ForecastDay";
 
 type activeTabType = "details" | "forecast";
 
@@ -16,7 +17,7 @@ const DetailsPanel = () => {
     WeatherDataContext
   ) as WeatherDataContextType;
 
-  const { current } = weatherData || {};
+  const { current, forecast } = weatherData || {};
 
   // If there the value provided in DetailRow is undefined or null, the value will be set to 0. (For loading purposes)
 
@@ -53,6 +54,9 @@ const DetailsPanel = () => {
     <div className="forecast-tab tab-container">
       <div className="forecast-details detail-section">
         <p>Forecast Details</p>
+        {forecast?.forecastday.map((day, index) => {
+          return <ForecastDay forecastDay={day} key={index} />;
+        })}
       </div>
     </div>
   );

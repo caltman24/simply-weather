@@ -24,17 +24,19 @@ const TempPanel = () => {
 
   const weatherDetails = (
     <Fragment>
-      <span className="temp-header">
-        <h2>{temperature}</h2>
-        <div className="temp-condition">
-          <img src={condition?.icon} alt={condition?.text} />
-          <p>{condition?.text}</p>
+      <div className="wrapper">
+        <span className="temp-header">
+          <h2>{temperature}</h2>
+          <div className="temp-condition">
+            <img src={condition?.icon} alt={condition?.text} />
+            <p>{condition?.text}</p>
+          </div>
+        </span>
+        <div className="temp-location">
+          <p className="city">{location?.name}</p>
+          <p className="country">{location?.region}</p>
+          <p className="country">{location?.country}</p>
         </div>
-      </span>
-      <div className="temp-location">
-        <p className="city">{location?.name}</p>
-        <p className="country">{location?.region}</p>
-        <p className="country">{location?.country}</p>
       </div>
       <div className="last-updated">
         <p>last updated: {last_updated}</p>

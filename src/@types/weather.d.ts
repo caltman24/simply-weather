@@ -1,6 +1,23 @@
 import React from "react";
 import { AppSettings } from "./settings";
 
+export interface IForecastDay {
+  date: string;
+  day: {
+    maxtemp_c: string;
+    maxtemp_f: string;
+    mintemp_f: string;
+    mintemp_c: string;
+    avgtemp_c: string;
+    avgtemp_f: string;
+    maxwind_mph: string;
+    maxwind_kph: string;
+    condition: {
+      icon: string;
+    };
+  };
+}
+
 export interface ISearchData {
   name?: string;
   region?: string;
@@ -29,6 +46,9 @@ export interface IWeatherData {
     precip_in: string;
     humidity: string;
     cloud: string;
+  };
+  forecast: {
+    forecastday: IForecastDay[];
   };
   error?: {
     message: string;
