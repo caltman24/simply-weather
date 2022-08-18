@@ -21,11 +21,8 @@ const SearchBar = () => {
 
   const searchAPI = async (location: string) => {
     if (location === "") return;
-    const API_KEY: string = import.meta.env.VITE_API_KEY;
-    const url = `https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${location}`;
-
     try {
-      const response = await fetch(url);
+      const response = await fetch(`/api/search?location=${location}`);
       const data = await response.json();
 
       const formatedData: ISearchData[] = data.map((item: any) => {
