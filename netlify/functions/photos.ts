@@ -8,6 +8,25 @@ const API_KEY: any = process.env.VITE_UNSPLASH_KEY;
 
 const handler: Handler = async (event) => {
   const { keyword } = event.queryStringParameters || {};
+
+  if (!keyword) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: "Missing keyword",
+      }),
+    };
+  }
+
+  if (!API_KEY) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        message: "Missing API key",
+      }),
+    };
+  }
+
   // unsplash api
   const unsplashAPI = createApi({
     apiUrl: "https://api.unsplash.com/",
@@ -27,18 +46,28 @@ const handler: Handler = async (event) => {
   };
 
   const getPhotoUrl = async (res: ApiResponse<Random | Random[]>) => {
-    const photo = res?.response as any;
+    const photo = res?.response as Random;
     const url = photo?.urls?.raw + "&dpr=1&fit=crop&w=1920&h=1080";
     return url;
   };
 
-  const photo = await getRandomPhoto(keyword);
-  const url = await getPhotoUrl(photo);
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ url }),
-  };
+  try {
+    const res = await getRandomPhoto(keyword);
+    const url = await getPhotoUrl(res);
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        url,
+      }),
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        message: error.message,
+      }),
+    };
+  }
 };
 
 export { handler };
