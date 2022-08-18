@@ -9,7 +9,7 @@ const API_KEY: any = process.env.VITE_UNSPLASH_KEY;
 const handler: Handler = async (event) => {
   const { keyword } = event.queryStringParameters || {};
 
-  if (!keyword) {
+  if (keyword === null) {
     return {
       statusCode: 400,
       body: JSON.stringify({
