@@ -89,6 +89,7 @@ const SettingsModal = ({ isOpen, setOpen }: SettingsModalProps) => {
         <div className="close-modal-icon"></div>
       </div>
       <h1>SETTINGS</h1>
+      <hr />
       <div className="modal-settings">
         <span className="modal-settings-row">
           <p>Temperature Unit: </p>

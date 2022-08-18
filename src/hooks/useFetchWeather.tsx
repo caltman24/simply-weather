@@ -19,6 +19,7 @@ const useFetchWeather = (location: CurrentLocation) => {
         precip_in,
         humidity,
         cloud,
+        uv,
       },
       forecast: { forecastday },
     } = data;
@@ -41,6 +42,7 @@ const useFetchWeather = (location: CurrentLocation) => {
         precip_in,
         humidity,
         cloud,
+        uv,
       },
       forecast: {
         forecastday,

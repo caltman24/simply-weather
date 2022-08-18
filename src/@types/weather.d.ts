@@ -46,6 +46,7 @@ export interface IWeatherData {
     precip_in: number;
     humidity: number;
     cloud: number;
+    uv: number;
   };
   forecast: {
     forecastday: IForecastDay[];

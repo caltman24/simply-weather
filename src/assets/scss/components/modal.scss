@@ -60,6 +60,13 @@
 
   h1 {
     letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  hr {
+    margin-top: 0.25em;
+    border: 1px solid var(--clr-light);
+    border-radius: 50px;
   }
 
   &-settings {
