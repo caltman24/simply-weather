@@ -9,7 +9,7 @@ interface FadeInOutProps {
 const useDelayUnmount = (isMounted: boolean, delayTime: number) => {
   const [showElement, setShowElement] = useState(false);
   useEffect(() => {
-    let timeoutId: number;
+    let timeoutId: any;
     if (isMounted && !showElement) {
       setShowElement(true);
     } else if (!isMounted && showElement) {

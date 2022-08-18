@@ -51,15 +51,14 @@ const useFetchWeather = (location: CurrentLocation) => {
   useEffect(() => {
     if (location === "" || location === null) return;
 
-    const API_KEY: string = import.meta.env.VITE_API_KEY;
-    const url = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=5&aqi=no&alerts=no`;
-
-    fetch(url)
+    fetch(`/api/weather?location=${location}`)
       .then((res) => {
         if (res.ok) return res.json();
         else throw new Error("No Matching Location Found");
       })
-      .then((data: IWeatherData) => setWeatherData(formatData(data)))
+      .then((data: IWeatherData) => {
+        setWeatherData(formatData(data));
+      })
       .catch((err) => {
         console.error(err);
         alert(err.message);

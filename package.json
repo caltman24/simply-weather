@@ -9,12 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@netlify/functions": "^1.2.0",
     "dotenv": "^16.0.1",
+    "node-fetch": "^3.2.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "unsplash-js": "^7.0.15"
   },
   "devDependencies": {
+    "@types/node": "^18.7.6",
     "@types/react": "^18.0.15",
     "@types/react-clock": "^3.0.1",
     "@types/react-dom": "^18.0.6",
