@@ -12,7 +12,7 @@ const useFetchPhoto = (
 
   useEffect(() => {
     if (!conditionText || !weatherData) return;
-    fetch(`/api/photos/keyword&=${conditionText}`)
+    fetch(`/api/photos?keyword=${conditionText}`)
       .then((res) => res.json())
       .then((data) => {
         setPhoto(data.url);
