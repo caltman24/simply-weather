@@ -11,7 +11,7 @@ import ForecastDay from "./ForecastDay";
 type activeTabType = "details" | "forecast";
 
 const DetailsPanel = () => {
-  const [activeTab, setActiveTab] = useState<activeTabType>("forecast");
+  const [activeTab, setActiveTab] = useState<activeTabType>("details");
 
   const { weatherData, appSettings } = useContext(
     WeatherDataContext
