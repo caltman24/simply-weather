@@ -13,8 +13,7 @@ import useFetchPhoto from "./hooks/useFetchPhoto";
 import { WeatherDataProvider } from "./WeatherDataContext";
 
 // -----------------------------------------------------------------------------
-// TODO: 1. Implement netlify functions for api calls
-// TODO: 2. Implement a service worker for offline support
+// TODO: 1. Implement a service worker for offline support
 // -----------------------------------------------------------------------------
 
 const App = () => {
