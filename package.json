@@ -21,7 +21,6 @@
     "@types/react": "^18.0.15",
     "@types/react-clock": "^3.0.1",
     "@types/react-dom": "^18.0.6",
-    "@types/serviceworker": "^0.0.50",
     "@vitejs/plugin-react": "^2.0.0",
     "autoprefixer": "^10.4.8",
     "netlify-cli": "^10.17.4",
