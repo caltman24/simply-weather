@@ -27,14 +27,14 @@ const App = () => {
   const { weatherData } = useFetchWeather(currentLocation);
   // Grab the condition text from the weather data to use to get the photo from unsplash
   const conditionText: ConditionText = weatherData?.current.condition.text;
-  // const photo = useFetchPhoto(conditionText, weatherData);
+  const photo = useFetchPhoto(conditionText, weatherData);
 
   // Everytime the photo changes then update the background image
   // photo change useEffect
-  // useEffect(() => {
-  //   if (!photo) return;
-  //   document.body.style.backgroundImage = `url(${photo})`;
-  // }, [photo]);
+  useEffect(() => {
+    if (!photo) return;
+    document.body.style.backgroundImage = `url(${photo})`;
+  }, [photo]);
 
   // Geolocation UseEffect
   useEffect(() => {
